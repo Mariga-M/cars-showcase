@@ -41,7 +41,7 @@ module.exports = {
         // },
         "primary-blue": {
           DEFAULT: "#00008b",
-          100: "#D6BCFA",
+          100: "#E9E9FB",
         },
         "secondary-orange": "#f79761",
         "light-white": {
