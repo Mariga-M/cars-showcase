@@ -4,7 +4,7 @@ export async function fetchCars(filters: FilterProps)  {
   const { manufacturer, year, model, limit, fuel } = filters;
 
     const headers = {
-      'X-RapidAPI-Key': '55c3a898acmsh1fb52d3f3ea4261p1a9d2djsnd15486e8d614',
+      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPID_API_KEY || '',
       'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
     }
 
@@ -17,7 +17,7 @@ export async function fetchCars(filters: FilterProps)  {
 }
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
-    const basePricePerDay = 10000; // Base rental price per day 
+    const basePricePerDay = 12500; // Base rental price per day 
     const mileageFactor = 0.5; // Additional rate per mile driven
     const ageFactor = 0.1; // Additional rate per year of vehicle age
   
@@ -32,12 +32,11 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
   };
 
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
-    // hrjavascript-mastery
     const url = new URL('https://cdn.imagin.studio/getimage');
 
     const {make, year, model} = car;
 
-    url.searchParams.append('customer', 'hrjavascript-mastery');
+    url.searchParams.append('customer', process.env.NEXT_PUBLIC_IMAGIN_API_KEY || '');
     url.searchParams.append('make', make);
     url.searchParams.append('modelFamily', model.split(' ')[0]);
     url.searchParams.append('zoomType', 'fullscreen');
